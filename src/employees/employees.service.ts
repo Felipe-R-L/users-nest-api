@@ -12,13 +12,16 @@ constructor(private readonly databaseService: DatabaseService){}
      })
   }
   async findAll(role?: 'INTERN'|'ENGINEER'|'ADMIN') {
-    if(role)
+    if(role){
     return this.databaseService.employees.findMany({
       where: {
         role,
       }
     });
+  }
+    else{
     return this.databaseService.employees.findMany();
+    }
   }
   async findOne(id: number) {
     return this.databaseService.employees.findUnique({
